@@ -92,8 +92,41 @@ public class MyCode {
 		//alternatingCharacters(ax);
 		
 		String ay = "abcc";
-		isValid(ay);
+		//isValid(ay);
+		
+		//String[] x = {"give", "me" ,"one", "grand","today", "night"};
+		
+		String[] x = {"h", "ghq", "g", "xxy", "wdnr", "anjst", "xxy", "wdnr", "h", "h", "anjst", "wdnr"};
+		//String[] y = {"give" ,"one", "grand","today"};
+		String[] y= {"h","ghq"};
+		checkMagazine(x, y);
+		
 	}
+	
+	  static void checkMagazine(String[] magazine, String[] note) {
+		int len1 = note.length;
+		int len2 = magazine.length;
+		
+		int i=0, j=0;
+		
+		Arrays.sort(magazine);
+		Arrays.sort(note);
+		
+		int count =0;
+		while(i<len1 && j<len2) {
+			if(note[i].equals(magazine[j])) {
+				count ++;
+				i++;
+			}
+			j++;
+		}
+		if(count == len1) {
+			System.out.println("Yes");
+		}else {
+			System.out.println("No");
+		}
+		
+	  }
 	
 	 static String isValid(String s) {
 		 String valid = "NO";

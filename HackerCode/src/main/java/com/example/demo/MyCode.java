@@ -82,46 +82,113 @@ public class MyCode {
 		//{2,5,1,3,4};
 		//1 2 5 3 4 7 8 6
 		//int[] q = {2,5,1,3,4};
-		minimumBribes(q);
-//		String aa = "fcrxzwscanmligyxyvym";
-//		String b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
-		String aa = "cde";
-		String b = "abc";
-		makeAnagram(aa,b);
+		//minimumBribes(q);
+		String aa = "fcrxzwscanmligyxyvym";
+		String b = "jxwtrhvujlmrpdoqbisbwhmgpmeoke";
+		//String aa ="cde";
+		//String b = "abc";
+		//makeAnagram(aa,b);
+		String ax = "AAABBB";
+		//alternatingCharacters(ax);
 		
+		String ay = "abcc";
+		isValid(ay);
 	}
 	
+	 static String isValid(String s) {
+		 String valid = "NO";
+		 char[] c = s.toCharArray();
+		 Arrays.sort(c);
+		 HashMap<Character, Integer> hash = new HashMap<>();
+			for(char x : c) {
+				int chac = 1;
+				if(hash.containsKey(x)) {
+					chac = chac +hash.get(x);
+				}
+				hash.put(x, chac);
+			}
+		System.out.println(hash.toString());
+		
+		for(int i=0; i<c.length; i++) {
+			int nextIndex = i +1;
+			int charlen = hash.get(c[i]);
+			if(nextIndex < c.length && charlen == hash.get(c[nextIndex])) {
+				valid = "YES";
+			}else if(hash.get(c[nextIndex]) > charlen + 1){
+				valid = "YES";
+			}
+		}
+		 
+		return valid;
+
+	    }
+	
+	 static int alternatingCharacters(String s) {
+		 int deletion = 0;
+		 char[] a = s.toCharArray();
+		 for(int index = 0; index < a.length; index ++) {
+			 int nextindex = index + 1;
+			 	if(nextindex < a.length && a[index] == a[nextindex]) {
+			 		deletion ++;
+			 	}
+		 }
+		 
+		 System.out.println(deletion);
+		 
+		 return deletion;
+
+	    }
+	 
+
+	
 	static int makeAnagram(String a, String b) {
-		char[] c = a.toCharArray();
-		char[] d = b.toCharArray();
+		char[] aVal = a.toCharArray();
+		char[] bVal = b.toCharArray();
 		int count = 0;
-		char m;
-		HashMap<Character, Integer> hash = new HashMap<Character,Integer>();
-		HashMap<Character, Integer> hashb = new HashMap<Character,Integer>();
-        for(m = 'a'; m <= 'z'; ++m) {
-        	  System.out.print(m + " ");
-        	  ArrayList<Integer> arr = new ArrayList<Integer>();
-        	  for(int j=0; j<a.length(); j++) {
-              	if(a.charAt(j) == m) {
-              		arr.add(j);
-              	}
-              }
-        	  hash.put(m, arr.size());
-        	  
-        	  ArrayList<Integer> arr1 = new ArrayList<Integer>();
-        	  for(int j=0; j<b.length(); j++) {
-              	if(b.charAt(j) == m) {
-              		arr1.add(j);
-              	}
-              }
-        	  
-        	  hashb.put(m, arr1.size());
-        }
-        
-        System.out.print(hash.toString()+"\n");
-        System.out.print(hashb.toString());
-          
-		return count;
+		Arrays.sort(aVal);
+		Arrays.sort(bVal);
+		System.out.println(aVal);
+		System.out.println(bVal);
+		HashMap<Character, Integer> hash = new HashMap<>();
+		for(char x : aVal) {
+			int chac = 1;
+			if(hash.containsKey(x)) {
+				chac = chac +hash.get(x);
+			}
+			hash.put(x, chac);
+		}
+		System.out.println(hash.toString());
+		
+		HashMap<Character, Integer> hash1 = new HashMap<>();
+		for(char x : bVal) {
+			int chac = 1;
+			if(hash1.containsKey(x)) {
+				chac = chac +hash1.get(x);
+			}
+			hash1.put(x, chac);
+		}
+		System.out.println(hash1.toString());
+		
+		for(char cc ='a'; cc<='z'; cc++ ) {
+			int val = 0;
+			int val1 = 0;
+			if(hash.containsKey(cc)) {
+				 val =hash.get(cc);
+			}
+			if(hash1.containsKey(cc)) {
+				 val1 =hash1.get(cc);
+			}
+			if(val != val1) {
+				if(val > val1){
+					count = count + (val - val1);
+				}else if(val1 > val) {
+					count =  count + (val1 - val);
+				}
+			}
+			
+		}
+		System.out.println(count);
+			return count;
     }
 	static void miniBribe(int[] q) {
 		// index logic

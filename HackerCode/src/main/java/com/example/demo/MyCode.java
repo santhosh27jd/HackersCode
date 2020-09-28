@@ -99,9 +99,51 @@ public class MyCode {
 		String[] x = {"h", "ghq", "g", "xxy", "wdnr", "anjst", "xxy", "wdnr", "h", "h", "anjst", "wdnr"};
 		//String[] y = {"give" ,"one", "grand","today"};
 		String[] y= {"h","ghq"};
-		checkMagazine(x, y);
+		//checkMagazine(x, y);
+		String l = "hello";
+		String k = "world";
+		
+		//twoStrings(l,k);
+		int[] z = {6,4,1};
+		countSwaps(z);
 		
 	}
+	
+		static void countSwaps(int[] a) {
+			int arraySwaped = 0;
+			for(int i=0; i<a.length; i++) {
+				for(int j = i+1; j<a.length ; j++) {
+					if(a[i] > a[j]) {
+						int tmp = a[i];
+						a[i] = a[j];
+						a[j] = tmp;
+						j --;
+						arraySwaped ++;
+					}
+				}
+			}
+			
+			System.out.println("Array is sorted in "+arraySwaped+" swaps.");
+			System.out.println("First Element: "+a[0]);
+			System.out.println("Last Element: "+a[a.length-1]);
+	
+	    }
+	
+	
+		static String twoStrings(String s1, String s2) {
+			String ret = "NO";	
+			char[] a = s1.toCharArray();
+			
+			for(char c : "abcdefghijklmnopqrstuvwxyz".toCharArray()) {
+				if(s1.indexOf(c) > -1 && s2.indexOf(c) > -1) {
+					 ret = "YES";	
+					 break;
+				}
+			}
+			System.out.println(ret);
+			return ret;
+	    }
+	
 	
 	  static void checkMagazine(String[] magazine, String[] note) {
 		int len1 = note.length;
